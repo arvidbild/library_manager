@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 //Handle our routes
 var index = require('./routes/index');
-var users = require('./routes/books');
+var books = require('./routes/books');
 var patrons = require("./routes/loans");
 var loans = require("./routes/patrons");
 
