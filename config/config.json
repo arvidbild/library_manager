@@ -9,6 +9,6 @@
   },
   "production": {
     "storage" : "library.db",  
-    "dialect": "sqlte"
+    "dialect": "sqlite"
   }
 }
