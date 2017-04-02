@@ -4,14 +4,14 @@ block content
 
     h1 Checked Out Books
     p
-      a.button(href='new_book.html') Create New Book
+      a.button(href='new_book') Create New Book
     p
       | Filters 
-      a(href='all_books.html') All
+      a(href='all_books') All
       |  
-      a(href='overdue_books.html') Overdue
+      a(href='overdue_books') Overdue
       |  
-      a(href='checked_books.html') Checked Out
+      a(href='checked_books') Checked Out
     table
       thead
         tr
@@ -20,27 +20,10 @@ block content
           th Genre
           th Year Released
       tbody
-        tr
-          td
-            a(href='book_detail.html') Emma
-          td Jane Austen
-          td Classic
-          td 1815
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Goblet of Fire
-          td J.K. Rowling
-          td Fantasy
-          td 2000
-        tr
-          td
-            a(href='book_detail.html') A Brief History of Time
-          td Stephen Hawking
-          td Non Fiction
-          td 1988
-        tr
-          td
-            a(href='book_detail.html') The Universe in a Nutshell
-          td Stephen Hawking
-          td Non Fiction
-          td 2001
+        each returnedBook in returnedBooks
+            tr
+              td
+                a(href='book_detail/' + returnedBook.book.id)= returnedBook.book.title 
+              td= returnedBook.book.author 
+              td= returnedBook.book.genre 
+              td= returnedBook.book.first_published 

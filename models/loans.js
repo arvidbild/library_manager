@@ -10,6 +10,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        //think of ".belongsTo" as "the table belongs to the column"   
+        loans.belongsTo(models.patrons, {foreignKey: 'patron_id'});
+        loans.belongsTo(models.books, {foreignKey: 'book_id'});
       }
     }
   });

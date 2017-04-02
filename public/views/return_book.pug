@@ -2,22 +2,22 @@ extends layout
 
 block content
 
-    h1 Patron: Return Book
+    h1 Patron: #{loans.patron.first_name}
     p
       strong Book Title: 
-      | Harry Potter and the Goblet of Fire
+      | #{loans.book.title}       
     p
       strong Loaned By: 
-      | Andrew Chalkley
+      | #{loans.patron.first_name}
     p
       strong Loaned On: 
-      | 2015-12-11
+      | #{loans.loaned_on}
     p
       strong Return By: 
-      | 2015-12-18
-    form
+      | #{loans.return_by}
+    form(method="post" action="/return_book/" + loans.id)
       p
         label(for='returned_on') Returned on:
-        input#returned_on(type='text', value='2020-10-10')
+        input#returned_on(type='text', name="returned_on" value=time.returned_on required)
       p
         input(type='submit', value='Return Book')

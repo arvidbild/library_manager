@@ -4,51 +4,33 @@ block content
 
     h1 Overdue Loans
     p
-      a.button(href='new_loan.html') Create New Loan
+      a.button(href='new_loan') Create New Loan
     p
       | Filters 
-      a(href='all_loans.html') All
+      a(href='all_loans') All
       |  
-      a(href='overdue_loans.html') Overdue
+      a(href='overdue_loans') Overdue
       |  
-      a(href='checked_loans.html') Checked Out
+      a(href='checked_loans') Checked Out
     table
       thead
-        tr
-          th Book
-          th Patron 
-          th Loaned on
-          th Return by 
-          th Returned on
-          th Action
+        form(method="get" action="/overdue_loans")
+            tr
+              th Book
+              th Patron 
+              th Loaned on
+              th Return by 
+              th Returned on
+              th Action
       tbody
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Goblet of Fire
-          td
-            a(href='patron_detail.html') Andrew Chalkley
-          td 2015-12-11
-          td 2015-12-18
-          td
-          td
-            a.button(href='return_book.html') Return Book
-        tr
-          td
-            a(href='book_detail.html') A Brief History of Time
-          td
-            a(href='patron_detail.html') Andrew Chalkley
-          td 2015-12-12
-          td 2015-12-19
-          td
-          td
-            a.button(href='return_book.html') Return Book
-        tr
-          td
-            a(href='book_detail.html') The Universe in a Nutshell
-          td
-            a(href='patron_detail.html') Alena Holligan
-          td 2015-12-13
-          td 2015-12-20
-          td
-          td
-            a.button(href='return_book.html') Return Book
+        each overdueBook in overdueBooks
+            tr
+              td
+                a(href='book_detail/' + overdueBook.book.id)= overdueBook.book.title
+              td
+                a(href='patron_detail/' + overdueBook.patron.first_name)= overdueBook.patron.first_name
+              td= overdueBook.loaned_on
+              td= overdueBook.return_by
+              td= overdueBook.returned_on
+              td
+                a.button(href='return_book') Return Book

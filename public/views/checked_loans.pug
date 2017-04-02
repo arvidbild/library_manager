@@ -7,58 +7,30 @@ block content
       a.button(href='new_loan') Create New Loan
     p
       | Filters 
-      a(href='/all_loans') All
+      a(href='all_loans') All
       |  
-      a(href='/overdue_loans') Overdue
+      a(href='overdue_loans') Overdue
       |  
-      a(href='/checked_loans') Checked Out
+      a(href='checked_loans') Checked Out
     table
       thead
-        tr
-          th Book
-          th Patron 
-          th Loaned on
-          th Return by 
-          th Returned on
-          th Action
+        form(method="get" action="/checked_loans")
+            tr
+              th Book
+              th Patron 
+              th Loaned on
+              th Return by 
+              th Returned on
+              th Action
       tbody
-        tr
-          td
-            a(href='book_detail.html') Emma
-          td
-            a(href='patron_detail.html') Dave McFarland
-          td 2015-12-10
-          td 2020-10-20
-          td
-          td
-            a.button(href='return_book.html') Return Book
-        tr
-          td
-            a(href='book_detail.html') Harry Potter and the Goblet of Fire
-          td
-            a(href='patron_detail.html') Andrew Chalkley
-          td 2015-12-11
-          td 2015-12-18
-          td
-          td
-            a.button(href='return_book.html') Return Book
-        tr
-          td
-            a(href='book_detail.html') A Brief History of Time
-          td
-            a(href='patron_detail.html') Andrew Chalkley
-          td 2015-12-12
-          td 2015-12-19
-          td
-          td
-            a.button(href='return_book.html') Return Book
-        tr
-          td
-            a(href='book_detail.html') The Universe in a Nutshell
-          td
-            a(href='patron_detail.html') Alena Holligan
-          td 2015-12-13
-          td 2015-12-20
-          td
-          td
-            a.button(href='return_book.html') Return Book
+        each returnedBook in returnedBooks
+            tr
+              td
+                a(href='book_detail/' + returnedBook.book.id)= returnedBook.book.title
+              td
+                a(href='patron_detail/' + returnedBook.patron.id)= returnedBook.patron.first_name
+              td= returnedBook.loaned_on
+              td= returnedBook.return_by
+              td= returnedBook.returned_on
+              td
+                a.button(href='return_book.html') Return Book

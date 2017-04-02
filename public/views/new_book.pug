@@ -2,18 +2,18 @@ extends layout
 
 block content
     h1 New Book
-    form
+    form(method="post", action="new_book")
       p
         label(for='title') Title
-        input#title(type='text')
+        input(type='text' name="title" required)
       p
         label(for='author') Author
-        input#author(type='text')
+        input(type='text',name="author" required)
       p
         label(for='genre') Genre
-        input#genre(type='text')
+        input(type='text',name="genre" required)
       p
         label(for='first_published') First Published
-        input#first_published(type='text')
+        input(type='text',name="first_published" required)
       p
-        input(type='submit', value='Create New Book')
+        input(type='submit',value='Create New Book')
